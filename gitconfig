@@ -1,7 +1,7 @@
-[init]
-  templatedir = ~/.git_template
-[push]
-  default = current
+#[init]
+#  templatedir = ~/.git_template
+#[push]
+#  default = current
 [color]
   ui = auto
 [alias]
@@ -21,11 +21,19 @@
 [core]
   excludesfile = ~/.gitignore
   autocrlf = input
-[merge]
-  ff = only
-[commit]
-  template = ~/.gitmessage
-[fetch]
-  prune = true
+#[merge]
+#  ff = only
+#[commit]
+#  template = ~/.gitmessage
+#[fetch]
+#  prune = true
 [include]
   path = ~/.gitconfig.local
+[push]
+	default = simple
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /opt/homebrew-cask/Caskroom/sourcetree/1.9.8/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
