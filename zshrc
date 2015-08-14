@@ -3,6 +3,23 @@ for function in ~/.zsh/functions/*; do
   source $function
 done
 
+# modify the prompt to contain git branch name if applicable
+git_prompt_info() {
+  current_branch=$(git current-branch 2> /dev/null)
+  if [[ -n $current_branch ]]; then
+    echo " %{$fg_bold[green]%}$current_branch%{$reset_color%}"
+  fi
+}
+setopt promptsubst
+export PS1='${SSH_CONNECTION+"%{$fg_bold[green]%}%n@%m:"}%{$fg_bold[blue]%}%c%{$reset_color%}$(git_prompt_info) %# '
+
+# auto completion will be handled by oh my zsh
+# load our own completion functions
+# fpath=(~/.zsh/completion /usr/local/share/zsh/site-functions $fpath)
+# completion
+# autoload -U compinit
+# compinit will be executed by oh my zsh
+
 
 # makes color constants available
 autoload -U colors
@@ -90,6 +107,10 @@ ZSH_THEME="robbyrussell"
 HIST_STAMPS="yyyy-mm-dd"
 plugins=(git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras github heroku python autojump)
 source $ZSH/oh-my-zsh.sh
+# load custom executable functions
+# for function in ~/.zsh/functions/*; do
+#   source $function
+# done
 PROMPT=' ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
 setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
