@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+require 'date'
+require 'fileutils'
+
+date = Time.now.to_date
+puts "Starting archive-downloads at #{date}"
+download_dir = "#{ENV['HOME']}/Downloads"
+month_dir = "#{download_dir}/#{date.year}/#{date.month}"
+FileUtils.mkdir_p(month_dir)
+
+Dir.glob("#{download_dir}/*").each do |file|
+  name = File.basename(file)
+  next if name.to_i.to_s == name
+  next if name.end_with?('.crdownload')
+
+  dest = "#{month_dir}/#{name}"
+  next if File.exist?(dest)
+
+  puts "moving #{file} to #{dest}"
+  FileUtils.move(file, dest)
+end
