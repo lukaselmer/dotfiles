@@ -96,8 +96,14 @@ _load_settings "$HOME/.zsh/configs"
 export ZSH=$HOME/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 HIST_STAMPS="yyyy-mm-dd"
-plugins=(git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras github heroku python autojump)
+# currently disabled, leads to error: github
+# currently disabled, very slow: nvm
+# would be nice: plugins=(github nvm git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
+plugins=(git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
+# measure time: echo "init" && { time (
 source $ZSH/oh-my-zsh.sh
+# ) } && echo "init done"
+#
 # load custom executable functions
 # for function in ~/.zsh/functions/*; do
 #   source $function
