@@ -1,0 +1,6 @@
+*~
+.DS_Store
+.idea
+*.dvi
+*.fdb_latexmk
+*.fls
