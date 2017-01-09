@@ -4,7 +4,7 @@
 [push]
   default = current
 [color]
-  ui = auto
+	ui = true
 [alias]
   aa = add --all
   ap = add --patch
@@ -13,9 +13,19 @@
   co = checkout
   pf = push --force-with-lease
   st = status
+	stashq = -c commit.gpgsign=false stash
+	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	mylog = log --pretty=format:'%h %s [%an]' --graph
 [core]
-  excludesfile = ~/.gitignore
   autocrlf = input
+	attributesfile = ~/.gitattributes
+	pager = diff-so-fancy | less --tabs=4 -RFX
+#[merge]
+#  ff = only
+#[commit]
+#  template = ~/.gitmessage
+#[fetch]
+#  prune = true
 [rebase]
   autosquash = true
 [include]
@@ -24,3 +34,11 @@
   colorMoved = zebra
 [push]
 	default = simple
+[commit]
+	gpgsign = true
+[branch]
+	autosetuprebase = always
+[branch "*branch-name*"]
+	rebase = true
+[rerere]
+	enabled = true
