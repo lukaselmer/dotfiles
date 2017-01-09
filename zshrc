@@ -99,7 +99,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # currently disabled, leads to error: github
 # currently disabled, very slow: nvm
 # would be nice: plugins=(github nvm git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
-plugins=(git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
+plugins=(git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump)
 # measure time: echo "init" && { time (
 source $ZSH/oh-my-zsh.sh
 # ) } && echo "init done"
@@ -151,3 +151,5 @@ source /usr/local/share/zsh/site-functions/_aws
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
