@@ -49,6 +49,11 @@ if g:has_async
   Plug 'dense-analysis/ale'
 endif
 
+" New
+Plug 'rking/ag.vim'
+Plug 'rust-lang/rust.vim'
+Plug 'croaky/vim-colors-github'
+
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
 endif

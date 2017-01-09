@@ -22,3 +22,5 @@
   path = ~/.gitconfig.local
 [diff]
   colorMoved = zebra
+[push]
+	default = simple
