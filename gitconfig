@@ -34,6 +34,7 @@
   colorMoved = zebra
 [push]
 	default = simple
+	followTags = true
 [commit]
 	gpgsign = true
 [branch]
