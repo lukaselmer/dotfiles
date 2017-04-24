@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+# to install it as a cronjob:
+# > crontab -e
+# */5 * * * * ~/dotfiles/bin/screentracking
+
+# capture screen
+mkdir -p screentracking
+now=`date +%Y-%m-%d.%H:%M:%S`
+/usr/sbin/screencapture -x screentracking/auto_capture_$now.jpg
+chmod 600 screentracking/auto_capture_$now.jpg
+
+# delete old screenshots
+cd ~/screentracking
+find auto_capture_*.jpg -type f -mtime +1 -delete
