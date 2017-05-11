@@ -116,8 +116,8 @@ setopt EXTENDED_HISTORY
 # general
 export ARCHFLAGS="-arch x86_64"
 export MANPATH="/usr/local/man:$MANPATH"
-export CHROME_BIN="$HOME/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
-export FIREFOX_BIN="$HOME/Applications/Firefox.app/Contents/MacOS/firefox-bin"
+export CHROME_BIN="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+export FIREFOX_BIN="/Applications/Firefox.app/Contents/MacOS/firefox-bin"
 export PGDATA=/usr/local/var/postgres
 export LC_CTYPE=en_US.UTF-8
 export LANGUAGE="en_US.UTF-8"
