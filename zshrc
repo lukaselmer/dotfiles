@@ -103,12 +103,13 @@ _load_settings "$HOME/.zsh/configs"
 
 # oh my zsh
 export ZSH=$HOME/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+#ZSH_THEME="robbyrussell"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 HIST_STAMPS="yyyy-mm-dd"
 # currently disabled, leads to error: github
 # currently disabled, very slow: nvm
 # would be nice: plugins=(github nvm git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
-plugins=(git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump)
+plugins=(git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump zsh-autosuggestions zsh-syntax-highlighting)
 # measure time: echo "init" && { time (
 source $ZSH/oh-my-zsh.sh
 # ) } && echo "init done"
@@ -117,7 +118,8 @@ source $ZSH/oh-my-zsh.sh
 # for function in ~/.zsh/functions/*; do
 #   source $function
 # done
-PROMPT=' ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+#PROMPT=' ${ret_status}%{$fg_bold[green]%}%p %{$fg[cyan]%}%c %{$fg_bold[blue]%}$(git_prompt_info)%{$fg_bold[blue]%} % %{$reset_color%}'
+DEFAULT_USER=lukas
 setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
 # general
