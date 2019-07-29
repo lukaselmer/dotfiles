@@ -109,7 +109,8 @@ HIST_STAMPS="yyyy-mm-dd"
 # currently disabled, leads to error: github
 # currently disabled, very slow: nvm
 # would be nice: plugins=(github nvm git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
-plugins=(git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump zsh-autosuggestions zsh-syntax-highlighting)
+# plugins=(asdf git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime)
+plugins=(asdf git git-flow npm osx screen dircycle cp git-extras python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime)
 # measure time: echo "init" && { time (
 source $ZSH/oh-my-zsh.sh
 # ) } && echo "init done"
@@ -138,46 +139,50 @@ export GIT_EDITOR=vim
 export BLAS=/usr/local/opt/openblas/lib/libopenblas.a
 export LAPACK=/usr/local/opt/openblas/lib/libopenblas.a
 export PYENV_ROOT="$HOME/.pyenv"
+export PYTHONDONTWRITEBYTECODE=1
 # general path adjustments
 export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$HOME/.rbenv/bin:$PATH"
-export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
+# export PATH="$PYENV_ROOT/bin:$PATH"
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 # python / pyenv
 eval "$(pyenv init - zsh)"
-eval "$(pyenv virtualenv-init -)"
+# eval "$(pyenv virtualenv-init -)"
 source ~/.pyenv/completions/pyenv.zsh
 # ruby / rbenv
-eval "$(rbenv init - zsh --no-rehash)"
+# eval "$(rbenv init - zsh --no-rehash)"
+# asdf (ruby, node, java, ... version manager)
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
 # npm / nvm
-source ~/.nvm/nvm.sh
+# source ~/.nvm/nvm.sh
 autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
 
 # fuck
 eval "$(thefuck --alias)"
 
 # aws
-[[ -f ~/.aws/export_cred.sh ]] && source ~/.aws/export_cred.sh
-source /usr/local/share/zsh/site-functions/_aws
+# [[ -f ~/.aws/export_cred.sh ]] && source ~/.aws/export_cred.sh
+# source /usr/local/share/zsh/site-functions/_aws
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
@@ -186,3 +191,5 @@ source /usr/local/share/zsh/site-functions/_aws
 [[ -f ~/.aliases ]] && source ~/.aliases
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
