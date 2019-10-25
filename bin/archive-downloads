@@ -7,12 +7,16 @@ date = Time.now.to_date
 puts "Starting archive-downloads at #{date}"
 download_dir = "#{ENV['HOME']}/Downloads"
 month_dir = "#{download_dir}/#{date.year}/#{date.month}"
+Kernel.exit(0) if Dir.exists?(month_dir)
 FileUtils.mkdir_p(month_dir)
 
 Dir.glob("#{download_dir}/*").each do |file|
   name = File.basename(file)
   next if name.to_i.to_s == name
   next if name.end_with?('.crdownload')
+
+  file_date = File.stat(file).mtime
+  next if file_date.year == date.year && file_date.month == date.month
 
   dest = "#{month_dir}/#{name}"
   next if File.exist?(dest)
