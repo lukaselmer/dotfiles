@@ -52,7 +52,8 @@ endif
 " New
 Plug 'rking/ag.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'croaky/vim-colors-github'
+Plug 'acarapetis/vim-colors-github'
+Plug 'powerline/powerline'
 
 if filereadable(expand("~/.vimrc.bundles.local"))
   source ~/.vimrc.bundles.local
