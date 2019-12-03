@@ -1,6 +1,5 @@
 *.pyc
 *.sw[nop]
-*.pyc
 .idea
 .DS_Store
 .bundle
