@@ -103,9 +103,10 @@ HIST_STAMPS="yyyy-mm-dd"
 # currently disabled, very slow: nvm
 # would be nice: plugins=(github nvm git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
 # plugins=(asdf git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime)
-plugins=(asdf git git-flow npm osx screen dircycle cp git-extras python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime)
+plugins=(asdf git git-flow npm osx screen dircycle cp git-extras python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime kubectl)
 # measure time: echo "init" && { time (
 source $ZSH/oh-my-zsh.sh
+complete -F __start_kubectl k
 # ) } && echo "init done"
 #
 # load custom executable functions
@@ -131,7 +132,7 @@ export VISUAL=vim
 export GIT_EDITOR=vim
 export BLAS=/usr/local/opt/openblas/lib/libopenblas.a
 export LAPACK=/usr/local/opt/openblas/lib/libopenblas.a
-export PYENV_ROOT="$HOME/.pyenv"
+#export PYENV_ROOT="$HOME/.pyenv"
 export PYTHONDONTWRITEBYTECODE=1
 # general path adjustments
 export PATH="$HOME/.bin:$PATH"
@@ -141,9 +142,9 @@ export PATH="$HOME/.scripts:$PATH"
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
 # python / pyenv
-eval "$(pyenv init - zsh)"
+#eval "$(pyenv init - zsh)"
 # eval "$(pyenv virtualenv-init -)"
-source ~/.pyenv/completions/pyenv.zsh
+#source ~/.pyenv/completions/pyenv.zsh
 # ruby / rbenv
 # eval "$(rbenv init - zsh --no-rehash)"
 # asdf (ruby, node, java, ... version manager)
@@ -188,3 +189,5 @@ export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

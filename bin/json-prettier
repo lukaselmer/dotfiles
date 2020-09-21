@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+const util = require('util');
+const childProcess = require('child_process');
+
+const readFile = util.promisify(fs.readFile);
+const writeFile = util.promisify(fs.writeFile);
+const exec = util.promisify(childProcess.exec);
+
+async function main() {
+  /** @type string[]  */
+  // @ts-ignore
+  const argv = process.argv;
+  await Promise.all(argv.slice(2).map(processFile));
+}
+
+/**
+ * @param {string} name
+ */
+async function processFile(name) {
+  if (!name.endsWith('.json'))
+    return console.warn(`Unable to process ${name}, can only process json files`);
+
+  const contents = JSON.parse(await readFile(name, 'utf8'));
+  await writeFile(name, JSON.stringify(contents), 'utf8');
+  const out = await exec(`prettier --write ${name}`);
+  if (out.stderr) throw new Error(out.stderr);
+  if (out.stdout) console.log(out.stdout.trim());
+}
+
+main()
+  .then(() => {})
+  .catch((e) => console.error(e));
