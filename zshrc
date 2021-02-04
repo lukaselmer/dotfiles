@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # load custom executable functions
 for function in ~/.zsh/functions/*; do
   source $function
@@ -97,13 +104,13 @@ _load_settings "$HOME/.zsh/configs"
 # oh my zsh
 export ZSH=$HOME/.oh-my-zsh
 #ZSH_THEME="robbyrussell"
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 HIST_STAMPS="yyyy-mm-dd"
 # currently disabled, leads to error: github
 # currently disabled, very slow: nvm
 # would be nice: plugins=(github nvm git git-flow nvm lol npm nyan osx screen coffee dircycle encode64 bundler brew gem rails svn rake cp git-extras heroku python autojump)
 # plugins=(asdf git git-flow lol npm nyan osx screen coffee dircycle encode64 bundler gem rails svn rake cp git-extras heroku python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime)
-plugins=(asdf git git-flow npm osx screen dircycle cp git-extras python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime kubectl)
+plugins=(genpass asdf ansible brew emoji git-auto-fetch gnu-utils history git git-flow npm osx screen dircycle cp git-extras python autojump zsh-autosuggestions zsh-syntax-highlighting wakatime kubectl aws universalarchive extract yarn)
 # measure time: echo "init" && { time (
 source $ZSH/oh-my-zsh.sh
 complete -F __start_kubectl k
@@ -132,12 +139,15 @@ export VISUAL=vim
 export GIT_EDITOR=vim
 export BLAS=/usr/local/opt/openblas/lib/libopenblas.a
 export LAPACK=/usr/local/opt/openblas/lib/libopenblas.a
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
 #export PYENV_ROOT="$HOME/.pyenv"
 export PYTHONDONTWRITEBYTECODE=1
 # general path adjustments
 export PATH="$HOME/.bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="$HOME/.scripts:$PATH"
+export ANDROID_SDK=$HOME/Library/Android/sdk
+export PATH=$ANDROID_SDK/emulator:$ANDROID_SDK/tools:$PATH
 # export PATH="$PYENV_ROOT/bin:$PATH"
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # export PATH="$PATH:/usr/local/opt/coreutils/libexec/gnubin"
@@ -191,3 +201,10 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# https://www.whatan00b.com/posts/debugging-a-segfault-from-ansible/
+# https://bugs.python.org/issue30385
+export no_proxy='*'
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
